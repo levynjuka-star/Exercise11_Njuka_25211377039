@@ -24,16 +24,24 @@
 </head>
 <body>
   <h1>📊 Sales Dashboard</h1>
-  <div class="controls">
-    <label for="regionSelect">Filter by Region:</label>
-    <select id="regionSelect" onchange="filterData()">
-      <option value="all">All Regions</option>
-      <option value="north">North</option>
-      <option value="south">South</option>
-      <option value="east">East</option>
-      <option value="west">West</option>
-    </select>
-  </div>
+<div class="controls">
+  <label for="chartTypeSelect">Chart Type:</label>
+  <select id="chartTypeSelect" onchange="changeChartType()">
+    <option value="bar">Bar</option>
+    <option value="line">Line</option>
+    <option value="pie">Pie</option>
+  </select>
+
+  <label for="regionSelect">Filter by Region:</label>
+  <select id="regionSelect" onchange="filterData()">
+    <option value="north">North</option>
+    <option value="south">South</option>
+    <option value="east">East</option>
+    <option value="west">West</option>
+    <option value="all">All Regions</option>
+  </select>
+</div>
+
   <div class="chart-container">
     <canvas id="salesChart"></canvas>
   </div>
