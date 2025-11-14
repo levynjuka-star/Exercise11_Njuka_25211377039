@@ -1,10 +1,12 @@
 const ctx = document.getElementById('dashboardChart').getContext('2d');
 
-// Chart types to cycle through
-const chartTypes = ['bar', 'pie', 'line'];
+// Chart types available
+const chartTypes = ['bar', 'line', 'pie'];
 let currentChartIndex = 0;
+let currentRegion = 'north';
+let dashboardChart;
 
-// Sample data by region
+// Sample data
 const fullData = {
   labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
   datasets: {
@@ -14,9 +16,6 @@ const fullData = {
     west: [800, 850, 900, 950, 1000, 1100]
   }
 };
-
-let currentRegion = 'north';
-let dashboardChart;
 
 // Render chart based on type and region
 function renderChart(type, region) {
@@ -41,19 +40,19 @@ function renderChart(type, region) {
       borderColor: 'rgba(54, 162, 235, 1)',
       borderWidth: 1
     }],
-    pie: [{
-      label: label,
-      data: data,
-      backgroundColor: [
-        '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'
-      ]
-    }],
     line: [{
       label: label,
       data: data,
       borderColor: 'rgba(255, 99, 132, 1)',
       fill: false,
       tension: 0.3
+    }],
+    pie: [{
+      label: label,
+      data: data,
+      backgroundColor: [
+        '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'
+      ]
     }]
   };
 
@@ -79,21 +78,18 @@ function renderChart(type, region) {
   });
 }
 
-// Dropdown filter
+// Handle region change
 function filterData() {
   currentRegion = document.getElementById('regionSelect').value;
-  renderChart(chartTypes[currentChartIndex], currentRegion);
+  const selectedType = document.getElementById('chartTypeSelect').value;
+  renderChart(selectedType, currentRegion);
 }
 
-// Navigation buttons
-function showNextChart() {
-  currentChartIndex = (currentChartIndex + 1) % chartTypes.length;
-  renderChart(chartTypes[currentChartIndex], currentRegion);
-}
-
-function showPreviousChart() {
-  currentChartIndex = (currentChartIndex - 1 + chartTypes.length) % chartTypes.length;
-  renderChart(chartTypes[currentChartIndex], currentRegion);
+// Handle chart type change
+function changeChartType() {
+  const selectedType = document.getElementById('chartTypeSelect').value;
+  currentChartIndex = chartTypes.indexOf(selectedType);
+  renderChart(selectedType, currentRegion);
 }
 
 // Initial render
