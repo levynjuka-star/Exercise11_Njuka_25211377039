@@ -4,27 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Interactive Chart Dashboard</title>
+
+  <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    body {
-      font-family: sans-serif;
-      padding: 20px;
-      background: #f0f2f5;
-    }
-    .controls {
-      margin-bottom: 20px;
-    }
-    .chart-container {
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-  </style>
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <h1>📊 Sales Dashboard</h1>
-<div class="controls">
+
+    <div class="controls">
   <label for="chartTypeSelect">Chart Type:</label>
   <select id="chartTypeSelect" onchange="changeChartType()">
     <option value="bar">Bar</option>
@@ -32,82 +22,24 @@
     <option value="pie">Pie</option>
   </select>
 
-  <label for="regionSelect">Filter by Region:</label>
-  <select id="regionSelect" onchange="filterData()">
-    <option value="north">North</option>
-    <option value="south">South</option>
-    <option value="east">East</option>
-    <option value="west">West</option>
-    <option value="all">All Regions</option>
-  </select>
-</div>
+    <label for="regionSelect">Filter by Region:</label>
+    <select id="regionSelect" onchange="filterData()">
+      <option value="north">North</option>
+      <option value="south">South</option>
+      <option value="east">East</option>
+      <option value="west">West</option>
+      <option value="all">All Regions</option>
+    </select>
+
+    <button onclick="showPreviousChart()">⬅ Back</button>
+    <button onclick="showNextChart()">Next ➡</button>
+  </div>
 
   <div class="chart-container">
-    <canvas id="salesChart"></canvas>
+    <canvas id="dashboardChart"></canvas>
   </div>
-  <div class="controls">
-  <button onclick="window.location.href='Line.html'">Next ➡</button>
-</div>
-<div class="chart-container">
-  <canvas id="dashboardChart"></canvas>
-</div>
+
+  <!-- External Script -->
+  <script src="script.js"></script>
 </body>
 </html>
-
-<script>
-  const fullData = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-    datasets: {
-      north: [1200, 1500, 1800, 1700, 1600, 1900],
-      south: [1000, 1100, 1300, 1250, 1400, 1500],
-      east: [900, 950, 1000, 1100, 1200, 1300],
-      west: [800, 850, 900, 950, 1000, 1100]
-    }
-  };
-
-  const ctx = document.getElementById('salesChart').getContext('2d');
-  const salesChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: fullData.labels,
-      datasets: [{
-        label: 'Sales (North)',
-        data: fullData.datasets.north,
-        backgroundColor: 'rgba(54, 162, 235, 0.6)',
-        borderColor: 'rgba(54, 162, 235, 1)',
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        tooltip: {
-          callbacks: {
-            label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y}`
-          }
-        }
-      },
-      scales: {
-        y: { beginAtZero: true }
-      }
-    }
-  });
-
-  function filterData() {
-    const region = document.getElementById('regionSelect').value;
-    let dataset;
-    let label;
-
-    if (region === 'all') {
-      dataset = Object.values(fullData.datasets).reduce((a, b) => a.map((v, i) => v + b[i]));
-      label = 'Total Sales';
-    } else {
-      dataset = fullData.datasets[region];
-      label = `Sales (${region.charAt(0).toUpperCase() + region.slice(1)})`;
-    }
-
-    salesChart.data.datasets[0].data = dataset;
-    salesChart.data.datasets[0].label = label;
-    salesChart.update();
-  }
-</script>
