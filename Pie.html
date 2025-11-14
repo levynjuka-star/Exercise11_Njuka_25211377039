@@ -38,7 +38,8 @@
     <canvas id="salesChart"></canvas>
   </div>
   <div class="controls">
-  <button onclick="window.location.href='Line.html'">Next ➡</button>
+  <button onclick="window.location.href='line.html'">⬅ Back</button>
+  <button onclick="window.location.href='Excercise11_Njuka_25211377039.html'">Next ➡</button>
 </div>
 <div class="chart-container">
   <canvas id="dashboardChart"></canvas>
@@ -59,7 +60,7 @@
 
   const ctx = document.getElementById('salesChart').getContext('2d');
   const salesChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'pie',
     data: {
       labels: fullData.labels,
       datasets: [{

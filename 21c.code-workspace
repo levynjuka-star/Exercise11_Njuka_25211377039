@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../21c"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Project_Folder"
+	}
+}
