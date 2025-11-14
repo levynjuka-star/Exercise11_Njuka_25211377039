@@ -11,9 +11,9 @@ const fullData = {
   labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
   datasets: {
     north: [1200, 1500, 1800, 1700, 1600, 1900],
-    south: [1000, 1100, 1300, 1250, 1400, 1500],
-    east: [900, 950, 1000, 1100, 1200, 1300],
-    west: [800, 850, 900, 950, 1000, 1100]
+    south: [600, 1100, 1300, 1250, 1400, 1200],
+    east: [900, 950, 1000, 1550, 1700, 800],
+    west: [1300, 1850, 900, 1950, 1000, 1300]
   }
 };
 
@@ -93,4 +93,5 @@ function changeChartType() {
 }
 
 // Initial render
+
 renderChart(chartTypes[currentChartIndex], currentRegion);
