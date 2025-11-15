@@ -77,7 +77,6 @@ canvas {
   }
 }
 </style>
-  
 </head>
 <body>
   <h1>📊 Sales Dashboard</h1>
@@ -95,8 +94,8 @@ canvas {
     <canvas id="salesChart"></canvas>
   </div>
   <div class="controls">
-  <button onclick="window.location.href='line.html'">⬅ Back</button>
-  <button onclick="window.location.href='index.html'">Next ➡</button>
+  <button onclick="window.location.href='index.html'">⬅ Back</button>
+  <button onclick="window.location.href='Pie.html'">Next ➡</button>
 </div>
 <div class="chart-container">
   <canvas id="dashboardChart"></canvas>
@@ -109,15 +108,15 @@ canvas {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
     datasets: {
       north: [1200, 1500, 1800, 1700, 1600, 1900],
-      south: [1000, 1100, 1300, 1250, 1400, 1500],
-      east: [900, 950, 1000, 1100, 1200, 1300],
-      west: [800, 850, 900, 950, 1000, 1100]
+    south: [600, 1100, 1300, 1250, 1400, 1200],
+    east: [900, 950, 1000, 1550, 1700, 800],
+    west: [1300, 1850, 900, 1950, 1000, 1300]
     }
   };
 
   const ctx = document.getElementById('salesChart').getContext('2d');
   const salesChart = new Chart(ctx, {
-    type: 'pie',
+    type: 'Pie',
     data: {
       labels: fullData.labels,
       datasets: [{
