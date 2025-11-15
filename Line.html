@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Interactive Chart Dashboard</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
- <style>
+<style>
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f4f6f8;
@@ -106,7 +106,7 @@ canvas {
   const fullData = {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
     datasets: {
-       north: [1200, 1500, 1800, 1700, 1600, 1900],
+      north: [1200, 1500, 1800, 1700, 1600, 1900],
     south: [600, 1100, 1300, 1250, 1400, 1200],
     east: [900, 950, 1000, 1550, 1700, 800],
     west: [1300, 1850, 900, 1950, 1000, 1300]
@@ -115,7 +115,7 @@ canvas {
 
   const ctx = document.getElementById('salesChart').getContext('2d');
   const salesChart = new Chart(ctx, {
-    type: 'line',
+    type: 'Line',
     data: {
       labels: fullData.labels,
       datasets: [{
